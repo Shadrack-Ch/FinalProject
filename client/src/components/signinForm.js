@@ -1,37 +1,28 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/auth'; // Adjust the path as per your project structure
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // To display error messages
-  const [isLoading, setIsLoading] = useState(false); // To manage loading state
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate(); // Hook to programmatically navigate
+  const { login } = useAuth(); // Destructure the login function from useAuth
+  const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Set loading state
+    setIsLoading(true);
 
     try {
-      const response = await fetch('/auth/login', { // Corrected endpoint
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json(); // Assuming the response returns JSON
-
-      if (response.ok) {
-        console.log('Sign-in successful!');
-        navigate('/dashboard'); // Redirect to dashboard or home page
-      } else {
-        setErrorMessage(data.message || 'Sign-in failed!'); // Set error message from response
-      }
+      // Use the login function from useAuth
+      await login({ email, password });
+      console.log('Sign-in successful!');
+      navigate('/dashboard'); // Redirect to the dashboard on successful login
     } catch (error) {
-      setErrorMessage('Error during sign-in');
+      // Handle errors that may be thrown by the login function
+      setErrorMessage(error.message || 'Sign-in failed!');
       console.error('Error during sign-in:', error);
     } finally {
       setIsLoading(false); // Reset loading state
@@ -40,21 +31,21 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSignIn}>
-      {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <p/>
+      <p />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <p/>
+      <p />
       <button type="submit" disabled={isLoading}>{isLoading ? 'Signing In...' : 'Sign In'}</button>
     </form>
   );
