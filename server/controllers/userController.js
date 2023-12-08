@@ -22,6 +22,21 @@ const updateUserProfile = async (req, res) => {
     }
 };
 
+// Function to get logged-in user's information
+const getUserInfo = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const user = await User.findById(userId).select('-password'); // Exclude password from the response
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving user information', error: error });
+    }
+};
 
 // Function to delete a user account
 const deleteUserAccount = async (req, res) => {
@@ -103,5 +118,6 @@ module.exports = {
     deleteUserAccount,
     listAllUsersCourses,
     listUsersCoursesForTerm,
-    listUsersCoursesByYear
+    listUsersCoursesByYear,
+    getUserInfo
 };

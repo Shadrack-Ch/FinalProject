@@ -1,0 +1,49 @@
+/client
+|-- /public
+|   |-- index.html
+|   |-- favicon.ico
+|-- /src
+|   |-- /components
+|   |   |-- /common
+|   |   |   |-- Header.js
+|   |   |   |-- Footer.js
+|   |   |   |-- ...
+|   |   |-- /auth
+|   |   |   |-- LoginForm.js
+|   |   |   |-- RegisterForm.js
+|   |   |-- /dashboard
+|   |   |   |-- Dashboard.js
+|   |   |   |-- ...
+|   |   |-- /courses
+|   |   |   |-- CourseList.js
+|   |   |   |-- CourseDetail.js
+|   |   |   |-- ...
+|   |-- /pages
+|   |   |-- HomePage.js
+|   |   |-- LoginPage.js
+|   |   |-- RegisterPage.js
+|   |   |-- DashboardPage.js
+|   |   |-- CoursePage.js
+|   |   |-- AssignmentPage.js
+|   |   |-- CalendarPage.js
+|   |   |-- ResourcePage.js
+|   |   |-- SettingsPage.js
+|   |   |-- ProfilePage.js
+|   |   |-- FriendsPage.js
+|   |   |-- NotFoundPage.js
+|   |-- /hooks
+|   |   |-- useAuth.js
+|   |   |-- useCourseData.js
+|   |   |-- ...
+|   |-- /context
+|   |   |-- AuthContext.js
+|   |   |-- CourseContext.js
+|   |   |-- ...
+|   |-- /assets
+|   |   |-- /images
+|   |   |-- /styles
+|   |   |   |-- main.css
+|   |-- App.js
+|   |-- index.js
+|   |-- routes.js
+|-- package.json

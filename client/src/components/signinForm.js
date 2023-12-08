@@ -19,7 +19,7 @@ const SignInForm = () => {
       // Use the login function from useAuth
       await login({ email, password });
       console.log('Sign-in successful!');
-      navigate('/dashboard'); // Redirect to the dashboard on successful login
+      navigate('/profile'); // Redirect to the dashboard on successful login
     } catch (error) {
       // Handle errors that may be thrown by the login function
       setErrorMessage(error.message || 'Sign-in failed!');

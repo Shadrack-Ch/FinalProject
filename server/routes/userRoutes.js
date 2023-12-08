@@ -27,6 +27,9 @@ const authenticate = require('../middleware/authMiddleware');
 // Update User Profile
 router.put('/update', authenticate, userController.updateUserProfile);
 
+// get user data route and function
+router.get('/profile', authenticate, userController.getUserInfo);
+
 // Delete User Account
 router.delete('/delete', authenticate, userController.deleteUserAccount);
 
